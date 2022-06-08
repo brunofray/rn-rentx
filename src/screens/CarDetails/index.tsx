@@ -3,6 +3,7 @@ import React from 'react';
 import { BackButton } from '../../components/BackButton';
 import { ImageSlider } from '../../components/ImageSlider';
 import { Acessory } from '../../components/Acessory';
+import { Button } from '../../components/Button';
 
 import speedSvg from '../../assets/speed.svg';
 import accelerationSvg from '../../assets/acceleration.svg';
@@ -10,6 +11,8 @@ import forceSvg from '../../assets/force.svg';
 import gasolineSvg from '../../assets/gasoline.svg';
 import exchangeSvg from '../../assets/exchange.svg';
 import peopleSvg from '../../assets/people.svg';
+
+import { useTheme } from 'styled-components';
 
 import {
   Container,
@@ -25,9 +28,13 @@ import {
   Price,
   Acessories,
   About,
+  Footer,
 } from './styles';
 
 export function CarDetails(){
+
+  const theme = useTheme();
+
   return (
     <Container>
       <Header>
@@ -68,6 +75,10 @@ export function CarDetails(){
           É um belíssimo carro para quem gosta de acelerar.
         </About>
       </Content>
+
+      <Footer>
+        <Button title="Confirmar" />
+      </Footer>
     </Container>
   );
 }
