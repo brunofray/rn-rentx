@@ -15,7 +15,10 @@ export type AppRoutes = {
   Home: undefined;
   CarDetails: { car: CarDTO };
   Scheduling: { car: CarDTO };
-  SchedulingDetails: { car: CarDTO };
+  SchedulingDetails: { 
+    car: CarDTO;
+    dates: string[];
+  };
   SchedulingComplete: undefined;
 }
 
