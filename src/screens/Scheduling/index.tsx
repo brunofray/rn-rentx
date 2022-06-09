@@ -30,6 +30,10 @@ export function Scheduling(){
     navigation.navigate('SchedulingDetails');
   }
 
+  function handleBack() {
+    navigation.goBack();
+  }
+
   return (
     <Container>
       <Header>
@@ -41,7 +45,7 @@ export function Scheduling(){
 
         <View style={{ alignSelf: 'flex-start' }}>
           <BackButton 
-            onPress={() => {}}
+            onPress={handleBack}
             color={theme.colors.shape}
           />
         </View>
