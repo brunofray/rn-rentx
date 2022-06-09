@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { StatusBar, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useTheme } from 'styled-components';
+import { AntDesign } from '@expo/vector-icons';
 
 import { CarDTO } from '../../dtos/CarDTO';
 import { BackButton } from '../../components/BackButton';
@@ -20,12 +21,19 @@ import {
   AppointmentsTitle,
   AppointmentsQuantity,
   CarList,
+  CarWrapper,
+  CarFooter,
+  CarFooterTitle,
+  CarFooterPeriod,
+  CarFooterDate,
 } from './styles';
 
-interface CarProps {
+export interface CarProps {
   id: string;
   user_id: string;
   car: CarDTO;
+  startDate: string;
+  endDate: string;
 }
 
 export function MyCars(){
@@ -93,7 +101,22 @@ export function MyCars(){
           data={cars}
           keyExtractor={item => String(item.id)}
           renderItem={({ item }) => 
-            <Car data={item.car} />
+            <CarWrapper>
+              <Car data={item.car} />
+              <CarFooter>
+                <CarFooterTitle>Período</CarFooterTitle>
+                <CarFooterPeriod>
+                  <CarFooterDate>{item.startDate}</CarFooterDate>
+                  <AntDesign
+                    name="arrowright"
+                    size={20}
+                    color={theme.colors.title}
+                    style={{ marginHorizontal: 10 }}
+                  />
+                  <CarFooterDate>{item.endDate}</CarFooterDate>
+                </CarFooterPeriod>
+              </CarFooter>
+            </CarWrapper>
           }
         />
       }
