@@ -79,9 +79,8 @@ export function MyCars(){
         </View>
 
         <Title>
-          Escolha uma {'\n'}
-          data de início e {'\n'}
-          fim do aluguel
+          Seus agendamentos, {'\n'}
+          estão aqui.
         </Title>
 
         <SubTitle>

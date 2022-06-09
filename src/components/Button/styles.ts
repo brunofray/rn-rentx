@@ -5,6 +5,7 @@ import { RectButton } from 'react-native-gesture-handler';
 
 interface ButtonProps {
   color?: string;
+  enabled?: boolean;
 }
 
 export const Container = styled(RectButton)<ButtonProps>`
@@ -16,6 +17,8 @@ export const Container = styled(RectButton)<ButtonProps>`
 
   background-color: ${({ theme, color }) =>
   color ? color : theme.colors.main};
+
+  opacity: ${({ enabled }) => enabled === undefined || enabled ? 1 : .5};
 `;
 
 export const Title = styled.Text`
