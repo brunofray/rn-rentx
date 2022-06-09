@@ -7,14 +7,15 @@ import { CarDetails } from '../screens/CarDetails';
 import { Scheduling } from '../screens/Scheduling';
 import { SchedulingDetails } from '../screens/SchedulingDetails';
 import { SchedulingComplete } from '../screens/SchedulingComplete';
+import { CarDTO } from "../dtos/CarDTO";
 
 const { Navigator, Screen } = createStackNavigator();
 
 export type AppRoutes = {
   Home: undefined;
-  CarDetails: undefined;
-  Scheduling: undefined;
-  SchedulingDetails: undefined;
+  CarDetails: { car: CarDTO };
+  Scheduling: { car: CarDTO };
+  SchedulingDetails: { car: CarDTO };
   SchedulingComplete: undefined;
 }
 
