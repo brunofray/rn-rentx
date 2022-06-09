@@ -1,7 +1,14 @@
 import React from 'react';
-import { Button, StyleSheet, View } from 'react-native';
+import { Button, StyleSheet, View, Dimensions } from 'react-native';
 
-import Animated, { useSharedValue, useAnimatedStyle } from 'react-native-reanimated';
+import Animated, { 
+  useSharedValue, 
+  useAnimatedStyle,
+  withTiming,
+  Easing,
+} from 'react-native-reanimated';
+
+const WIDTH = Dimensions.get('window').width;
 
 import {
   Container,
@@ -12,12 +19,19 @@ export function Splash(){
 
   const animatedStyles = useAnimatedStyle(() => {
     return {
-      transform: [{ translateX: animation.value }]
+      transform: [
+        { 
+          translateX: withTiming(animation.value, {
+            duration: 500,
+            easing: Easing.bezier(0,1.06,1,-0.13) // cubic-bezier.com
+          }) 
+        }
+      ]
     }
   });
 
   function handleAnimationPosition() {
-    animation.value = Math.random() * 100;
+    animation.value = Math.random() * (WIDTH - 100);
   }
 
   return (
