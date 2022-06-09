@@ -1,11 +1,11 @@
 import styled from 'styled-components/native';
-import { TouchableOpacity } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { RectButton } from 'react-native-gesture-handler';
 
 interface ButtonProps {
   color?: string;
   enabled?: boolean;
+  loading?: boolean;
 }
 
 export const Container = styled(RectButton)<ButtonProps>`
@@ -18,7 +18,7 @@ export const Container = styled(RectButton)<ButtonProps>`
   background-color: ${({ theme, color }) =>
   color ? color : theme.colors.main};
 
-  opacity: ${({ enabled }) => enabled === undefined || enabled ? 1 : .5};
+  opacity: ${({ enabled, loading }) => (loading || !enabled) ? .5 : 1};
 `;
 
 export const Title = styled.Text`
