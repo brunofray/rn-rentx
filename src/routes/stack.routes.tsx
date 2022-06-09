@@ -15,6 +15,7 @@ import { CarDTO } from "../dtos/CarDTO";
 const { Navigator, Screen } = createStackNavigator();
 
 export type AppRoutes = {
+  Splash: undefined;
   Home: undefined;
   CarDetails: { car: CarDTO };
   Scheduling: { car: CarDTO };
