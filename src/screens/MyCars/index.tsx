@@ -7,7 +7,7 @@ import { AntDesign } from '@expo/vector-icons';
 import { CarDTO } from '../../dtos/CarDTO';
 import { BackButton } from '../../components/BackButton';
 import { Car } from '../../components/Car';
-import { Load } from '../../components/Load';
+import { LoadAnimation } from '../../components/LoadAnimation';
 
 import api from '../../services/api';
 
@@ -95,7 +95,7 @@ export function MyCars(){
         </Appointments>
 
       { 
-        loading ? <Load /> :
+        loading ? <LoadAnimation /> :
         <CarList
           data={cars}
           keyExtractor={item => String(item.id)}

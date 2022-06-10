@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 import { ThemeProvider } from 'styled-components';
+import { LogBox } from 'react-native';
 
 import {
   useFonts,
@@ -17,6 +18,10 @@ import {
 import { Routes } from './src/routes';
 
 import theme from './src/styles/theme';
+
+LogBox.ignoreLogs([
+  "exported from 'deprecated-react-native-prop-types'.",
+]);
 
 export default function App() {
   const [fontsLoaded] = useFonts({
