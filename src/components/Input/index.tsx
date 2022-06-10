@@ -5,6 +5,8 @@ import { useTheme } from 'styled-components';
 
 import {
   Container,
+  InputText,
+  IconContainer,
 } from './styles';
 
 interface InputProps extends TextInputProps {
@@ -13,16 +15,21 @@ interface InputProps extends TextInputProps {
 
 export function Input({
   iconName,
+  ...rest
 }: InputProps){
   const theme = useTheme();
 
   return (
     <Container>
-      <Feather
-        name={iconName}
-        size={24}
-        color={theme.colors.text_detail}
-      />
+      <IconContainer>
+        <Feather
+          name={iconName}
+          size={24}
+          color={theme.colors.text_detail}
+        />
+      </IconContainer>
+
+      <InputText {...rest} />
     </Container>
   );
 }
