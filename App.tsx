@@ -32,10 +32,8 @@ export default function App() {
   }
 
   return (
-    // <GestureHandlerRootView style={{ flex: 1 }}>
     <ThemeProvider theme={theme}>
         <Routes />
     </ThemeProvider>
-    // </GestureHandlerRootView>
   )
 }
