@@ -40,21 +40,3 @@ export const CarList = styled(
   },
   showsVerticalScrollIndicator: false,
 })``;
-
-export const MyCarsButtonWrapper = styled.View`
-  position: absolute;
-  bottom: 13px;
-  right: 22px;
-`;
-
-export const MyCarsButton = styled(RectButton as RectButtonProps as AnyStyledComponent)`
-  width: 60px;
-  height: 60px;
-
-  border-radius: 30px;
-
-  justify-content: center;
-  align-items: center;
-
-  background-color: ${({ theme }) => theme.colors.main};
-`;
