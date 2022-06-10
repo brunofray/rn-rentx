@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { 
   StatusBar,
   KeyboardAvoidingView,
@@ -22,7 +22,8 @@ import {
 } from './styles';
 
 export function SignIn(){
-
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const theme = useTheme();
 
   return (
@@ -52,6 +53,8 @@ export function SignIn(){
               keyboardType="email-address"
               autoCorrect={false}
               autoCapitalize="none"
+              onChangeText={setEmail}
+              value={email}
             />
 
             <SpaceBottom marginBottom={8} />
@@ -59,6 +62,8 @@ export function SignIn(){
             <PasswordInput 
               iconName="lock"
               placeholder="Senha"
+              onChangeText={setPassword}
+              value={password}
             />
           </Form>
 
