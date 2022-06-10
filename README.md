@@ -52,6 +52,9 @@ $ git clone https://github.com/brunofray/rn-rentx.git && cd rn-rentx
 $ yarn
 ```
 
+![screencap-2022-06-10T043522 189Z](https://user-images.githubusercontent.com/26939700/172991783-dfd5edee-b56a-4238-8ab5-8dcb42688348.gif)
+
+
 ## 🤔 How to contribute
 
 **Make a fork of this repository**
