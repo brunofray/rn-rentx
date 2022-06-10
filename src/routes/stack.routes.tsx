@@ -10,6 +10,7 @@ import { SchedulingComplete } from '../screens/SchedulingComplete';
 import { MyCars } from "../screens/MyCars";
 import { Splash } from "../screens/Splash";
 import { SignIn } from "../screens/SignIn";
+import { SignUpFirstStep } from "../screens/SignUp/SignUpFirstStep";
 
 import { CarDTO } from "../dtos/CarDTO";
 
@@ -18,6 +19,7 @@ const { Navigator, Screen } = createStackNavigator();
 export type AppRoutes = {
   Splash: undefined;
   SignIn: undefined;
+  SignUpFirstStep: undefined;
   Home: undefined;
   CarDetails: { car: CarDTO };
   Scheduling: { car: CarDTO };
@@ -50,7 +52,11 @@ export function StackRoutes() {
       <Screen
         name="SignIn"
         component={SignIn}
-      />     
+      />
+      <Screen
+        name="SignUpFirstStep"
+        component={SignUpFirstStep}
+      />
       <Screen
         name="Home"
         component={Home}

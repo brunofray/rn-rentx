@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigation } from '@react-navigation/native';
 import { 
   StatusBar,
   KeyboardAvoidingView,
@@ -30,6 +31,8 @@ export function SignIn(){
   const [enableLoginButton, setEnableLoginButton] = useState(false);
   const theme = useTheme();
 
+  const navigation = useNavigation();
+
   async function handleSignIn() {
     try {
       const schema = Yup.object().shape({
@@ -52,6 +55,10 @@ export function SignIn(){
         );
       }
     }
+  }
+
+  function handleNewAccount() {
+    navigation.navigate('SignUpFirstStep');
   }
 
   useEffect(() => {
@@ -117,7 +124,7 @@ export function SignIn(){
             <Button
               title="Criar conta gratuita"
               color={theme.colors.background_secondary}
-              onPress={() => {}}
+              onPress={handleNewAccount}
               enabled={true}
               loading={false}
               light
