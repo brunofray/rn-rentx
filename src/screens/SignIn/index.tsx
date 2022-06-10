@@ -36,7 +36,7 @@ export function SignIn(){
     try {
       const schema = Yup.object().shape({
         email: Yup.string()
-          .required('E-mail obrigatório')
+          .required('E-mail é obrigatório')
           .email('Digite um e-mail válido'),
         password: Yup.string()
           .required('A senha é obrigatória')

@@ -14,6 +14,7 @@ import { SignUpFirstStep } from "../screens/SignUp/SignUpFirstStep";
 import { SignUpSecondStep } from "../screens/SignUp/SignUpSecondStep";
 
 import { CarDTO } from "../dtos/CarDTO";
+import { UserDTO } from "../dtos/UserDTO";
 
 const { Navigator, Screen } = createStackNavigator();
 
@@ -21,7 +22,7 @@ export type AppRoutes = {
   Splash: undefined;
   SignIn: undefined;
   SignUpFirstStep: undefined;
-  SignUpSecondStep: undefined;
+  SignUpSecondStep: { user: UserDTO};
   Home: undefined;
   CarDetails: { car: CarDTO };
   Scheduling: { car: CarDTO };
