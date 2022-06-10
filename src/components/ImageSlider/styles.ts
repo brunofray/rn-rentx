@@ -1,10 +1,5 @@
 import styled from 'styled-components/native';
 import { Dimensions } from 'react-native';
-import theme from '../../styles/theme';
-
-interface ImageIndexProps {
-  active: boolean;
-}
 
 export const Container = styled.View`
   width: 100%;

@@ -12,11 +12,13 @@ import {
 interface InputProps extends TextInputProps {
   iconName: React.ComponentProps<typeof Feather>['name'];
   value?: string;
+  spaceBottom?: number;
 }
 
 export function Input({
   iconName,
   value,
+  spaceBottom,
   ...rest
 }: InputProps){
   const [isFocused, setIsFocused] = useState(false);
@@ -33,7 +35,7 @@ export function Input({
   }
 
   return (
-    <Container>
+    <Container spaceBottom={spaceBottom}>
       <IconContainer
         isFocused={isFocused}
       >

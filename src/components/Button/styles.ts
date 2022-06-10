@@ -1,4 +1,4 @@
-import styled from 'styled-components/native';
+import styled, { css } from 'styled-components/native';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { RectButton } from 'react-native-gesture-handler';
 
@@ -6,6 +6,7 @@ interface ButtonProps {
   color?: string;
   enabled?: boolean;
   loading?: boolean;
+  spaceBottom?: number;
 }
 
 interface ButtonTextProps {
@@ -23,6 +24,10 @@ export const Container = styled(RectButton)<ButtonProps>`
   color ? color : theme.colors.main};
 
   opacity: ${({ enabled, loading }) => (loading || !enabled) ? .5 : 1};
+
+  ${({ spaceBottom }) => spaceBottom && css`
+    margin-bottom: ${spaceBottom}px;
+  `};
 `;
 
 export const Title = styled.Text<ButtonTextProps>`

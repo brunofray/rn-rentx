@@ -13,11 +13,13 @@ import {
 interface InputProps extends TextInputProps {
   iconName: React.ComponentProps<typeof Feather>['name'];
   value?: string;
+  spaceBottom?: number;
 }
 
 export function PasswordInput({
   iconName,
   value,
+  spaceBottom,
   ...rest
 }: InputProps){
   const [isPasswordVisible, setIsPasswordVisible] = useState(true);
@@ -39,7 +41,7 @@ export function PasswordInput({
   }
 
   return (
-    <Container>
+    <Container spaceBottom={spaceBottom}>
       <IconContainer
         isFocused={isFocused}
       >

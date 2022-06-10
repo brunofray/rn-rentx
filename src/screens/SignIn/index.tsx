@@ -22,7 +22,6 @@ import {
   SubTitle,
   Form,
   Footer,
-  SpaceBottom,
 } from './styles';
 
 export function SignIn(){
@@ -99,10 +98,9 @@ export function SignIn(){
               autoCapitalize="none"
               onChangeText={setEmail}
               value={email}
+              spaceBottom={8}
             />
-
-            <SpaceBottom marginBottom={8} />
-
+            
             <PasswordInput 
               iconName="lock"
               placeholder="Senha"
@@ -117,9 +115,8 @@ export function SignIn(){
               onPress={handleSignIn}
               enabled={enableLoginButton}
               loading={false}
+              spaceBottom={8}
             />
-
-            <SpaceBottom marginBottom={8} />
 
             <Button
               title="Criar conta gratuita"
