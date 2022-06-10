@@ -2,6 +2,10 @@ import styled from 'styled-components/native';
 import { getStatusBarHeight } from 'react-native-iphone-x-helper';
 import { RFValue } from 'react-native-responsive-fontsize';
 
+interface SpaceBottomProps {
+  marginBottom: number;
+}
+
 export const Container = styled.View`
   flex: 1;
   padding: 0 24px;
@@ -29,4 +33,13 @@ export const SubTitle = styled.Text`
   margin-top: 16px;
 `;
 
+export const Form = styled.View`
+  width: 100%;
+  margin: 64px 0;
+`;
+
 export const Footer = styled.View``;
+
+export const SpaceBottom = styled.View<SpaceBottomProps>`
+  margin-bottom: ${({ marginBottom }) => marginBottom}px;
+`;
