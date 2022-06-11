@@ -19,11 +19,13 @@ import { PasswordInput } from '../../../components/PasswordInput';
 import { useTheme } from 'styled-components';
 
 import { UserDTO } from '../../../dtos/UserDTO';
+import api from '../../../services/api';
 interface Params {
   user: UserDTO;
 }
 
 export function SignUpSecondStep(){
+  const [loading, setLoading] = useState(false);
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
   const navigation = useNavigation();
@@ -36,7 +38,7 @@ export function SignUpSecondStep(){
     navigation.goBack();
   }
 
-  function handleRegister() {
+  async function handleRegister() {
     if ( !password || !passwordConfirm ) {
       return Alert.alert('Informe a senha e a confirmação');
     }
@@ -45,12 +47,25 @@ export function SignUpSecondStep(){
       return Alert.alert('As senhas não são iguais');
     }
 
-    // Enviar para API e cadastrar.
+    setLoading(true);
 
-    navigation.navigate('Confirmation', {
-      title: 'Conta criada!',
-      message: `Agora é só fazer login\ne aproveitar.`,
-      nextScreenRoute: 'SignIn',
+    await api.post('/users', {
+      name: user.name,
+      email: user.email,
+      driver_license: user.driverLicense,
+      password
+    })
+    .then(() => {
+      navigation.navigate('Confirmation', {
+        title: 'Conta criada!',
+        message: `Agora é só fazer login\ne aproveitar.`,
+        nextScreenRoute: 'SignIn',
+      });
+    })
+    .catch((error) => {
+      setLoading(false);
+      console.log(error);
+      Alert.alert('Opa', 'Não foi possível cadastrar');
     });
   }
 
@@ -96,6 +111,8 @@ export function SignUpSecondStep(){
             title="Cadastrar"
             color= {theme.colors.success}
             onPress={handleRegister}
+            enabled={!loading}
+            loading={loading}
           />
         </Container>
       </TouchableWithoutFeedback>
