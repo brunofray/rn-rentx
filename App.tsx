@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text } from 'react-native';
 import { ThemeProvider } from 'styled-components';
 import { LogBox } from 'react-native';
+import { AppProvider } from './src/hooks';
 
 import {
   useFonts,
@@ -38,7 +39,9 @@ export default function App() {
 
   return (
     <ThemeProvider theme={theme}>
+      <AppProvider>
         <Routes />
+      </AppProvider>
     </ThemeProvider>
   )
 }

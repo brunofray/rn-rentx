@@ -10,6 +10,7 @@ import {
 import * as Yup from 'yup';
 
 import { useTheme } from 'styled-components';
+import { useAuth } from '../../hooks/auth';
 
 import { Button } from '../../components/Button';
 import { Input } from '../../components/Input';
@@ -25,12 +26,14 @@ import {
 } from './styles';
 
 export function SignIn(){
+  const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [enableLoginButton, setEnableLoginButton] = useState(false);
   const theme = useTheme();
 
   const navigation = useNavigation();
+  const { signIn } = useAuth();
 
   async function handleSignIn() {
     try {
@@ -43,7 +46,11 @@ export function SignIn(){
       })
   
       await schema.validate({ email, password });
+
+      setLoading(true);
+      await signIn({ email, password });
     } catch (error) {
+      setLoading(false);
       if ( error instanceof Yup.ValidationError ) {
         Alert.alert('Opa', error.message);
       }
@@ -113,8 +120,8 @@ export function SignIn(){
             <Button
               title="Login"
               onPress={handleSignIn}
-              enabled={enableLoginButton}
-              loading={false}
+              enabled={enableLoginButton && !loading}
+              loading={loading}
               spaceBottom={8}
             />
 
