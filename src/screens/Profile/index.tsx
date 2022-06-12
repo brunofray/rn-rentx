@@ -33,7 +33,7 @@ import {
 } from './styles';
 
 export function Profile(){
-  const { user } = useAuth();
+  const { user, signOut } = useAuth();
 
   const [option, setOption] = useState<'dataEdit' | 'dataPassword'>('dataEdit');
   const [avatar, setAvatar] = useState(user.avatar);
@@ -48,6 +48,7 @@ export function Profile(){
   }
 
   function handleSignOut() {
+    signOut();
   }
 
   function handleOptionChange(optionSelected: 'dataEdit' | 'dataPassword') {
