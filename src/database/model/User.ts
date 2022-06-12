@@ -4,8 +4,8 @@ import { field } from '@nozbe/watermelondb/decorators';
 class User extends Model {
   static table = 'users';
   
-  @field('id')
-  userId: string;
+  @field('user_id')
+  user_id: string;
 
   @field('name')
   name: string;
@@ -14,7 +14,7 @@ class User extends Model {
   email: string;
 
   @field('driver_license')
-  driverLicense: string;
+  driver_license: string;
 
   @field('avatar')
   avatar: string;
