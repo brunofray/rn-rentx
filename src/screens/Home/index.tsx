@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import { useNetInfo } from '@react-native-community/netinfo';
+
 import { useNavigation } from '@react-navigation/native';
-import { StatusBar, StyleSheet } from 'react-native';
+import { Alert, StatusBar } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 
 import Logo from '../../assets/logo.svg';
@@ -23,6 +25,7 @@ export function Home(){
   const [loading, setLoading] = useState(true);
   
   const navigation = useNavigation();
+  const netInfo = useNetInfo();
 
   function handleCarDetails(car: CarDTO) {
     navigation.navigate('CarDetails', { car });
@@ -51,6 +54,15 @@ export function Home(){
       isMounted = false;
     };
   }, []);
+
+  useEffect(() => {
+    if ( netInfo.isConnected ) {
+      Alert.alert('Você está conectado!');
+    }
+    else {
+      Alert.alert('Você está desconectado!');
+    }
+  }, [netInfo.isConnected]);
 
   return (
     <Container>
