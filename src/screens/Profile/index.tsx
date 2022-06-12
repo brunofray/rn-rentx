@@ -1,9 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Feather } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { useTheme } from 'styled-components';
 import { BackButton } from '../../components/BackButton';
-import { BorderlessButtonProps } from 'react-native-gesture-handler';
 
 import {
   Container,
@@ -14,9 +13,15 @@ import {
   PhotoContainer,
   Photo,
   PhotoButton,
+  Content,
+  Options,
+  Option,
+  OptionTitle,
 } from './styles';
 
 export function Profile(){
+  const [option, setOption] = useState<'dataEdit' | 'dataPassword'>('dataEdit');
+
   const theme = useTheme();
   const navigation = useNavigation();
 
@@ -25,6 +30,10 @@ export function Profile(){
   }
 
   function handleSignOut() {
+  }
+
+  function handleOptionChange(optionSelected: 'dataEdit' | 'dataPassword') {
+    setOption(optionSelected);
   }
 
   return (
@@ -56,6 +65,27 @@ export function Profile(){
           </PhotoButton>
         </PhotoContainer>
       </Header>
+
+      <Content>
+        <Options>
+          <Option 
+            active={option === 'dataEdit'}
+            onPress={() => handleOptionChange('dataEdit')}
+          >
+            <OptionTitle active={option === 'dataEdit'}>
+              Dados
+            </OptionTitle>
+          </Option>
+          <Option 
+            active={option === 'dataPassword'}
+            onPress={() => handleOptionChange('dataPassword')}
+          >
+            <OptionTitle active={option === 'dataPassword'}>
+              Trocar senha
+            </OptionTitle>
+          </Option>
+        </Options>
+      </Content>
     </Container>
   );
 }
