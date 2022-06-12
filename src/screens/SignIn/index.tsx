@@ -50,6 +50,7 @@ export function SignIn(){
       setLoading(true);
       await signIn({ email, password });
     } catch (error) {
+      console.log(error);
       setLoading(false);
       if ( error instanceof Yup.ValidationError ) {
         Alert.alert('Opa', error.message);

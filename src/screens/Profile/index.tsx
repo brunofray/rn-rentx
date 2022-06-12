@@ -2,13 +2,16 @@ import React, { useState } from 'react';
 import { 
   KeyboardAvoidingView,
   TouchableWithoutFeedback,
-  Keyboard
+  Keyboard,
+  Alert
 } from 'react-native';
 import { ImageInfo } from 'expo-image-picker/build/ImagePicker.types';
 import * as ImagePicker from 'expo-image-picker';
-import { Feather } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
+import * as Yup from 'yup';
+
+import { Feather } from '@expo/vector-icons';
 import { useTheme } from 'styled-components';
 import { useAuth } from '../../hooks/auth';
 
@@ -31,9 +34,10 @@ import {
   OptionTitle,
   Section,
 } from './styles';
+import { Button } from '../../components/Button';
 
 export function Profile(){
-  const { user, signOut } = useAuth();
+  const { user, signOut, updateUser } = useAuth();
 
   const [option, setOption] = useState<'dataEdit' | 'dataPassword'>('dataEdit');
   const [avatar, setAvatar] = useState(user.avatar);
@@ -47,8 +51,12 @@ export function Profile(){
     navigation.goBack();
   }
 
-  function handleSignOut() {
-    signOut();
+  async function handleSignOut() {
+    try {
+      await signOut();
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   function handleOptionChange(optionSelected: 'dataEdit' | 'dataPassword') {
@@ -70,6 +78,42 @@ export function Profile(){
     if (!result.cancelled) {
       const { uri } = result as ImageInfo;
       setAvatar( uri );
+    }
+  }
+
+  async function handleProfileUpdate() {
+    try {
+      const schema = Yup.object().shape({
+        driverLicense: Yup.string()
+        .required('CNH é obrigatória'),
+        name: Yup.string()
+        .required('Nome é obrigatório')
+      });
+
+      const data = { name, driverLicense };
+      await schema.validate(data);
+
+      await updateUser({
+        id: user.id,
+        user_id: user.user_id,
+        email: user.email,
+        name,
+        driver_license: driverLicense,
+        avatar,
+        token: user.token,
+      });
+
+      Alert.alert('Perfil atualizado!');
+
+    } catch (error) {
+      console.log(error);
+
+      if ( error instanceof Yup.ValidationError ) {
+        Alert.alert('Opa', error.message);
+      }
+      else {
+        Alert.alert('Não foi possível atualizar o perfil');
+      }
     }
   }
 
@@ -169,6 +213,11 @@ export function Profile(){
                 />
               </Section>
             }
+            <Button
+              title="Salvar alterações"
+              onPress={handleProfileUpdate}
+            />
+
           </Content>
         </Container>
       </TouchableWithoutFeedback>
