@@ -1,4 +1,5 @@
 import React from 'react';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { View, StyleSheet } from 'react-native';
 import { ThemeProvider } from 'styled-components';
 import { LogBox } from 'react-native';
@@ -45,11 +46,13 @@ export default function App() {
   }
 
   return (
-    <ThemeProvider theme={theme}>
-      <AppProvider>
-        <Routes />
-      </AppProvider>
-    </ThemeProvider>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <ThemeProvider theme={theme}>
+        <AppProvider>
+          <Routes />
+        </AppProvider>
+      </ThemeProvider>
+    </GestureHandlerRootView>
   )
 }
 
