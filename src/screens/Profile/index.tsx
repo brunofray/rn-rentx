@@ -4,6 +4,8 @@ import {
   TouchableWithoutFeedback,
   Keyboard
 } from 'react-native';
+import { ImageInfo } from 'expo-image-picker/build/ImagePicker.types';
+import * as ImagePicker from 'expo-image-picker';
 import { Feather } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
@@ -31,11 +33,15 @@ import {
 } from './styles';
 
 export function Profile(){
+  const { user } = useAuth();
+
   const [option, setOption] = useState<'dataEdit' | 'dataPassword'>('dataEdit');
+  const [avatar, setAvatar] = useState(user.avatar);
+  const [name, setName] = useState(user.name);
+  const [driverLicense, setDriverLicense] = useState(user.driver_license);
 
   const theme = useTheme();
   const navigation = useNavigation();
-  const { user } = useAuth();
 
   function handleBack() {
     navigation.goBack();
@@ -46,6 +52,24 @@ export function Profile(){
 
   function handleOptionChange(optionSelected: 'dataEdit' | 'dataPassword') {
     setOption(optionSelected);
+  }
+
+  async function handleAvatarSelect() {
+    const result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      allowsEditing: true,
+      aspect: [4, 4],
+      quality: 1,
+    });
+
+    if (result.cancelled) {
+      return;
+    }
+
+    if (!result.cancelled) {
+      const { uri } = result as ImageInfo;
+      setAvatar( uri );
+    }
   }
 
   return (
@@ -69,8 +93,8 @@ export function Profile(){
             </HeaderTop>
 
             <PhotoContainer>
-              <Photo source={{ uri: 'https://github.com/brunofray.png' }} />
-              <PhotoButton onPress={() => {}}>
+              { !!avatar && <Photo source={{ uri: avatar }} /> }
+              <PhotoButton onPress={handleAvatarSelect}>
                 <Feather 
                   name="camera" 
                   size={24} 
@@ -107,6 +131,7 @@ export function Profile(){
                   placeholder="Nome"
                   autoCorrect={false}
                   defaultValue={user.name}
+                  onChangeText={setName}
                   spaceBottom={8}
                 />
                 <Input
@@ -120,6 +145,7 @@ export function Profile(){
                   placeholder="CNH"
                   keyboardType="numeric"
                   defaultValue={user.driver_license}
+                  onChangeText={setDriverLicense}
                   spaceBottom={8}
                 />
               </Section>
