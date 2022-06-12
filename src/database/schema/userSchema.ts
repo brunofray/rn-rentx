@@ -28,6 +28,6 @@ const userSchema = tableSchema({
       type: 'string',
     },
   ]
-})
+});
 
 export { userSchema }
