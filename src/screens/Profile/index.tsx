@@ -53,7 +53,21 @@ export function Profile(){
 
   async function handleSignOut() {
     try {
-      await signOut();
+      Alert.alert(
+        'Tem certeza?', 
+        'Se você sair, irá precisar de internet para conectar-se novamente.',
+        [
+          {
+            text: 'Cancelar',
+            onPress: () => {},
+            style: 'cancel'
+          },
+          {
+            text: 'Sair',
+            onPress: () => signOut()
+          }
+        ]
+      );
     } catch (error) {
       console.log(error);
     }
