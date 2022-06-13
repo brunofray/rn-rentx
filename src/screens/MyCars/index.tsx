@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { StatusBar, View } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useIsFocused } from '@react-navigation/native';
 import { useTheme } from 'styled-components';
 import { AntDesign } from '@expo/vector-icons';
 import { format, parseISO } from 'date-fns';
@@ -41,6 +41,7 @@ export interface CarProps {
 export function MyCars(){
   const [cars, setCars] = useState<CarProps[]>([]);
   const [loading, setLoading] = useState(true);
+  const screenIsFocus = useIsFocused();
 
   const theme = useTheme();
   const navigation = useNavigation();
@@ -55,6 +56,7 @@ export function MyCars(){
         const response = await api.get('/rentals');
         const dataFormatted = response.data.map((data: CarProps) => {
           return {
+            id: data.id,
             car: data.car,
             start_date: format(parseISO(data.start_date), 'dd/MM/yyyy'),
             end_date: format(parseISO(data.end_date), 'dd/MM/yyyy'),
@@ -69,7 +71,7 @@ export function MyCars(){
     }
 
     fetchCars();
-  }, []);
+  }, [screenIsFocus]);
 
   return (
     <Container>
