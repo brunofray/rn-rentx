@@ -4,7 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 import { useTheme } from 'styled-components';
 import { AntDesign } from '@expo/vector-icons';
 
-import { CarDTO } from '../../dtos/CarDTO';
+import { Car as ModelCar } from '../../database/model/Car';
 import { BackButton } from '../../components/BackButton';
 import { Car } from '../../components/Car';
 import { LoadAnimation } from '../../components/LoadAnimation';
@@ -31,7 +31,7 @@ import {
 export interface CarProps {
   id: string;
   user_id: string;
-  car: CarDTO;
+  car: ModelCar;
   startDate: string;
   endDate: string;
 }
