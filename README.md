@@ -1,3 +1,5 @@
+![image](https://user-images.githubusercontent.com/26939700/173368257-6fe7bb71-9975-47da-a357-6e0bce55346f.png)
+
 <h1 align="center">
   <img src="/src/assets/logo.svg" alt="RentX" width="250px">
 </h1>
@@ -37,6 +39,10 @@ RentX is the application for who want to rent your cars.
 - [React Native](https://reactnative.dev/)
 - [TypeScript](https://www.typescriptlang.org/)
 - [Styled Components](https://styled-components.com/)
+- [WatermelonDB](https://nozbe.github.io/WatermelonDB/)
+- [Lottie](https://lottiefiles.com/)
+- [Reanimated v2](https://docs.swmansion.com/react-native-reanimated/)
+- [FastImage](https://github.com/DylanVann/react-native-fast-image)
 
 ## 💻 Getting started
 
@@ -55,8 +61,20 @@ $ git clone https://github.com/brunofray/rn-rentx.git && cd rn-rentx
 $ yarn
 ```
 
-![screencap-2022-06-10T043522 189Z](https://user-images.githubusercontent.com/26939700/172991783-dfd5edee-b56a-4238-8ab5-8dcb42688348.gif)
+Update your baseURL in services/api.ts with your local IP address.
 
+Start API:
+
+```bash
+yarn start
+```
+
+**API Routes**
+
+Import in your Insomnia: api/rotas_Insomnia.json 
+
+![screencap-2022-06-10T043522 189Z](https://user-images.githubusercontent.com/26939700/172991783-dfd5edee-b56a-4238-8ab5-8dcb42688348.gif)
+![screencap-2022-06-13T134305 258Z](https://user-images.githubusercontent.com/26939700/173368001-8caa617d-bed8-441e-80a9-3b1af3b4be70.gif)
 
 ## 🤔 How to contribute
 
