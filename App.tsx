@@ -24,6 +24,7 @@ import BrandSvg from './src/assets/brand.svg';
 
 LogBox.ignoreLogs([
   "exported from 'deprecated-react-native-prop-types'.",
+  "Non-serializable values were found in the navigation state",
 ]);
 
 export default function App() {

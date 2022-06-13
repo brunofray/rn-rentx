@@ -9,7 +9,6 @@ import { database } from '../../database';
 
 import Logo from '../../assets/logo.svg';
 import api from '../../services/api';
-import { CarDTO } from '../../dtos/CarDTO';
 
 import { Car } from '../../components/Car';
 import { Car as ModelCar } from '../../database/model/Car';
@@ -31,7 +30,7 @@ export function Home(){
   const netInfo = useNetInfo();
   const synchronizing = useRef(false);
 
-  function handleCarDetails(car: CarDTO) {
+  function handleCarDetails(car: ModelCar) {
     navigation.navigate('CarDetails', { car });
   }
 
@@ -80,7 +79,7 @@ export function Home(){
 
   useEffect(() => {
     const syncChanges = async () => {
-      if (netInfo.isConnected && !synchronizing.current) {
+      if (netInfo.isConnected === true && !synchronizing.current) {
         synchronizing.current = true;
         try {
           await offlineSynchronize(); //Watermelon

@@ -28,7 +28,7 @@ import {
 import { BackButton } from '../../components/BackButton';
 import { Button } from '../../components/Button';
 import { format, parseISO } from 'date-fns';
-import { CarDTO } from '../../dtos/CarDTO';
+import { Car as ModelCar } from '../../database/model/Car';
 
 interface RentalPeriod {
   start: number;
@@ -37,7 +37,7 @@ interface RentalPeriod {
   endFormatted: string;
 }
 interface Params {
-  car: CarDTO;
+  car: ModelCar;
 }
 
 export function Scheduling(){

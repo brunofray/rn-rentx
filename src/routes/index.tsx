@@ -6,7 +6,7 @@ import { AppTabRoutes } from './app.tab.routes';
 import { AuthRoutes } from './auth.routes';
 
 import { ConfirmationParams } from '../screens/Confirmation';
-import { CarDTO } from "../dtos/CarDTO";
+import { Car as ModelCar } from '../database/model/Car';
 import { UserDTO } from "../dtos/UserDTO";
 import { LoadAnimation } from '../components/LoadAnimation';
 
@@ -16,10 +16,10 @@ export type AppRoutes = {
   SignUpFirstStep: undefined;
   SignUpSecondStep: { user: UserDTO};
   Home: undefined;
-  CarDetails: { car: CarDTO };
-  Scheduling: { car: CarDTO };
+  CarDetails: { car: ModelCar };
+  Scheduling: { car: ModelCar };
   SchedulingDetails: { 
-    car: CarDTO;
+    car: ModelCar;
     dates: string[];
   };
   Confirmation: ConfirmationParams;

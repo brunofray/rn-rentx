@@ -18,6 +18,8 @@ import { useAuth } from '../../hooks/auth';
 import { BackButton } from '../../components/BackButton';
 import { Input } from '../../components/Input';
 import { PasswordInput } from '../../components/PasswordInput';
+import { Button } from '../../components/Button';
+import { useNetInfo } from '@react-native-community/netinfo';
 
 import {
   Container,
@@ -34,7 +36,6 @@ import {
   OptionTitle,
   Section,
 } from './styles';
-import { Button } from '../../components/Button';
 
 export function Profile(){
   const { user, signOut, updateUser } = useAuth();
@@ -46,6 +47,7 @@ export function Profile(){
 
   const theme = useTheme();
   const navigation = useNavigation();
+  const netInfo = useNetInfo();
 
   function handleBack() {
     navigation.goBack();
@@ -74,7 +76,12 @@ export function Profile(){
   }
 
   function handleOptionChange(optionSelected: 'dataEdit' | 'dataPassword') {
-    setOption(optionSelected);
+    if ( netInfo.isConnected === false && optionSelected === 'dataPassword' ) {
+      Alert.alert('Você está Offline', 'Para mudar a senha, conecte-se a Internet');
+    }
+    else {
+      setOption(optionSelected);
+    }
   }
 
   async function handleAvatarSelect() {
