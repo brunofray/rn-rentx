@@ -47,7 +47,7 @@ RentX is the application for who want to rent your cars.
 ## 💻 Getting started
 
 **Dependency API**
-- [API](https://github.com/rodrigorgtic/rentx-api-ignite)
+- [API](https://github.com/rodrigorgtic/rentx-ignite/tree/main/api)
 
 **Clone the project and access the folder**
 
