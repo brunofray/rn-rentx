@@ -8,6 +8,7 @@ import { AuthRoutes } from './auth.routes';
 import { ConfirmationParams } from '../screens/Confirmation';
 import { CarDTO } from "../dtos/CarDTO";
 import { UserDTO } from "../dtos/UserDTO";
+import { LoadAnimation } from '../components/LoadAnimation';
 
 export type AppRoutes = {
   Splash: undefined;
@@ -32,9 +33,10 @@ declare global {
 }
 
 export function Routes(){
-  const { user } = useAuth();
+  const { user, loading } = useAuth();
 
   return (
+    loading ? <LoadAnimation /> :
     <NavigationContainer>
       { user.id ? <AppTabRoutes /> : <AuthRoutes /> }
     </NavigationContainer>
